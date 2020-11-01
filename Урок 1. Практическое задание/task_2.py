@@ -39,5 +39,7 @@ bubble(values)
 print(values[0])
 
 # Сложность такого алгоритма: O(n) - линейная.
+
+
 min_value = min(values)
 print(min_value)
