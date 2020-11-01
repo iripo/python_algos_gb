@@ -17,3 +17,27 @@
 Алгоритмизатор должен развивать мышление, а это прежде всего практика.
 А без столкновения со сложностями его не развить.
 """
+from numpy.random import seed
+from numpy.random import randint
+
+
+# Сложность такого алгоритма: O(n^2) - квадратичная.
+
+
+def bubble(array):
+    for i in range(len(array) - 1):
+        for j in range(len(array) - i - 1):
+            if array[j] > array[j + 1]:
+                array[j], array[j + 1] = array[j + 1], array[j]
+
+
+# seed(1) - для отладки
+
+values = list(randint(1, 999, 20))
+print(values)
+bubble(values)
+print(values[0])
+
+# Сложность такого алгоритма: O(n) - линейная.
+min_value = min(values)
+print(min_value)
