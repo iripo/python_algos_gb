@@ -22,3 +22,32 @@
 Реализуйте поиск трех компаний с наибольшей годовой прибылью.
 Выведите результат.
 """
+
+from numpy.random import choice
+import pandas as pd
+from operator import itemgetter
+
+values = choice(20, size=10, replace=False)
+keys = list(map(lambda x: 'id{}'.format(x), values))
+profit = list(randint(1000, 100000, len(keys)))
+data = dict(zip(keys, profit))
+
+# Сложность такого алгоритма: O(n log n)
+
+sorted_data = sorted(data.items(), key=lambda x: x[1], reverse=True)
+print(sorted_data[0:3])
+
+# Сложность такого алгоритма: O(m*n)
+
+df = pd.DataFrame(list(data.items()), columns=['Keys', 'Profit'])
+print(df.sort_values(by='Profit', ascending=[False])[:3])
+
+
+# Сложность такого алгоритма: O(n log n)
+
+print(sorted(data.items(), key=itemgetter(1), reverse=True)[:3])
+
+
+#В данной здаче словарь сортируется по одному списку значений. Сортировка списка имеет сложность O(n log n)
+#В случае перевода словаря в датафрейм сложность будет O(m*n)
+#Согласно таблице и графику Big O - самые удачные по производительности решения - это решения 1 и 3. ез применения датафрейма
